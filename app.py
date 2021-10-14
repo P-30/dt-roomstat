@@ -42,7 +42,7 @@ def hello_world():  # put application's code here
     return jsonify({'msg': 'Hello World!'})
 
 
-@app.route('/train', methods=['POST'])
+@app.route('/prediction', methods=['POST'])
 def train():
     if request.method == "POST":
         file = request.files['file']
