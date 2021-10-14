@@ -45,13 +45,24 @@ def hello_world():  # put application's code here
 @app.route('/prediction', methods=['POST'])
 def train():
     if request.method == "POST":
-        file = request.files['file']
-        file.save(os.path.join('', 'file.csv'))
+        if 'file' in request.files:
+            file = request.files['file']
+            file.save(os.path.join('', 'file.csv'))
 
-        create_csv()
-        [result, confusion, accuracy, report] = my_main('file.csv')
-        result = result.tolist()
-        json_str = json.dumps({'result': result, 'confusion': confusion, 'accuracy': accuracy, 'report': report},
+            create_csv()
+            [result, confusion, accuracy, report] = my_main('file.csv')
+            result = result.tolist()
+            json_str = json.dumps(
+                {'message': 'OK', 'result': result, 'confusion': confusion, 'accuracy': accuracy, 'report': report,
+                 'status': 1},
+                ensure_ascii=False, default=str)
+            return app.response_class(json_str, mimetype='application/json')
+        else:
+            json_str = json.dumps({'result': [], 'message': 'required file', 'status': 0},
+                                  ensure_ascii=False, default=str)
+            return app.response_class(json_str, mimetype='application/json')
+    else:
+        json_str = json.dumps({'message': '405 Method Not Allowed', 'status': 0},
                               ensure_ascii=False, default=str)
         return app.response_class(json_str, mimetype='application/json')
 
