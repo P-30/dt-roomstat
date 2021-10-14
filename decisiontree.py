@@ -92,8 +92,12 @@ def my_main(filename):
     # tree.export_graphviz(clf_entropy, out_file='Tree.dot1')
     #
     # # 4) Use the model
+    confusion = confusion_matrix(y_test, y_pred_entropy)
+    accuracy = accuracy_score(y_test, y_pred_entropy) * 100
+    report = classification_report(y_test, y_pred_entropy)
+
     dataTest = pd.read_csv(filename, sep=',')
     modelUse = dataTest.values[:, 2:5]  # row dataset
     Result = clf_entropy.predict(modelUse)
     print(Result)
-    return Result
+    return [Result, confusion, accuracy, report]

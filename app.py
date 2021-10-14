@@ -49,9 +49,10 @@ def train():
         file.save(os.path.join('', 'file.csv'))
 
         create_csv()
-        result = my_main('file.csv')
+        [result, confusion, accuracy, report] = my_main('file.csv')
         result = result.tolist()
-        json_str = json.dumps(result, ensure_ascii=False, default=str)
+        json_str = json.dumps({'result': result, 'confusion': confusion, 'accuracy': accuracy, 'report': report},
+                              ensure_ascii=False, default=str)
         return app.response_class(json_str, mimetype='application/json')
 
 
