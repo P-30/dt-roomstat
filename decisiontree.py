@@ -14,7 +14,7 @@ import os
 
 
 def import_data():
-    dataset = pd.read_csv('static.csv', sep=',')
+    dataset = pd.read_csv('data//data_train.csv', sep=',')
 
     # Printing the dataswet shape
     print("Dataset Length: ", len(dataset))
@@ -67,7 +67,7 @@ def cal_accuracy(y_test, y_pred):
           classification_report(y_test, y_pred))
 
 
-def my_main(filename):
+def my_main():
     # Building Phase
     data = import_data()
     # print("==> ",data)
@@ -80,6 +80,7 @@ def my_main(filename):
     y_pred_entropy = prediction(X_test, clf_entropy)
     cal_accuracy(y_test, y_pred_entropy)
 
+#region prediction old
     # Target_names = ['Full', 'Empty']
     # Feature_names = ['luminance', 'motion', 'temperature']
     # dot_data = tree.export_graphviz(clf_entropy, out_file=None, feature_names=Feature_names,
@@ -91,12 +92,14 @@ def my_main(filename):
     # graph.render('dtree_render1', view=True)
     # tree.export_graphviz(clf_entropy, out_file='Tree.dot1')
     #
+#endregion
+    
     # # 4) Use the model
     confusion = confusion_matrix(y_test, y_pred_entropy)
     accuracy = accuracy_score(y_test, y_pred_entropy) * 100
     report = classification_report(y_test, y_pred_entropy)
 
-    dataTest = pd.read_csv(filename, sep=',')
+    dataTest = pd.read_csv('data//data_test.csv', sep=',')
     modelUse = dataTest.values[:, 2:5]  # row dataset
     Result = clf_entropy.predict(modelUse)
     print(Result)
