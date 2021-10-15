@@ -17,7 +17,7 @@ def create_csv_train():
     col_static = db['static']
     statics = col_static.find().limit(500)
     header = ['_id', 'datetime', 'luminance', 'motion', 'temperature', 'status']
-    with open('data//data_train.csv', 'w', encoding='UTF8') as f:
+    with open('data_train.csv', 'w', encoding='UTF8') as f:
         writer = csv.writer(f)
 
         # write the header
@@ -41,7 +41,7 @@ def create_csv_test():
     col_infomation = db['information']
     informotions = col_infomation.find()
     header = ['_id', 'datetime', 'luminance', 'motion', 'temperature']
-    with open('data//data_test.csv', 'w', encoding='UTF8') as f:
+    with open('data_test.csv', 'w', encoding='UTF8') as f:
         writer = csv.writer(f)
 
         writer.writerow(header)
