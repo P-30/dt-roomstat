@@ -14,7 +14,7 @@ import os
 
 
 def import_data():
-    dataset = pd.read_csv('data//data_train.csv', sep=',')
+    dataset = pd.read_csv('data_train.csv', sep=',')
 
     # Printing the dataswet shape
     print("Dataset Length: ", len(dataset))
@@ -99,7 +99,7 @@ def my_main():
     accuracy = accuracy_score(y_test, y_pred_entropy) * 100
     report = classification_report(y_test, y_pred_entropy)
 
-    dataTest = pd.read_csv('data//data_test.csv', sep=',')
+    dataTest = pd.read_csv('data_test.csv', sep=',')
     modelUse = dataTest.values[:, 2:5]  # row dataset
     Result = clf_entropy.predict(modelUse)
     print(Result)
