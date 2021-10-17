@@ -67,13 +67,19 @@ def hello_world():  # put application's code here
     [result, confusion, accuracy, report] = my_main()
     result = result.tolist()
     print(result)
-
+    status = 0
+    re = ""
     for x,data in zip(informotions1,result):
         col_infomation1.update_many({'_id': x['_id']},{"$set":{"label": data}})
 
+    if re == "Full":
+        status = 1
+    else:
+        status = 0
+
     json_str = json.dumps(
         {'message': 'OK', 'result': result, 'confusion': confusion, 'accuracy': accuracy, 'report': report,
-            'status': 1},
+            'status': status},
         ensure_ascii=False, default=str)
     return app.response_class(json_str, mimetype='application/json')
     # return jsonify({'msg': 'Hello World!'})
