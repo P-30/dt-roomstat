@@ -71,6 +71,7 @@ def hello_world():  # put application's code here
     re = ""
     for x,data in zip(informotions1,result):
         col_infomation1.update_many({'_id': x['_id']},{"$set":{"label": data}})
+        re = data
 
     if re == "Full":
         status = 1
