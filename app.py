@@ -4,21 +4,21 @@ import os
 from flask import Flask, jsonify, request
 from connecttion import get_database_by_name
 from pprint import pprint
-import csv
-from decisiontree import my_main
+# import csv
+# from decisiontree import my_main
 
-import pandas as pd
+# import pandas as pd
 import numpy as np
-from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import classification_report
-from sklearn.tree import export_text
+# from sklearn.metrics import confusion_matrix
+# from sklearn.model_selection import train_test_split
+# from sklearn.tree import DecisionTreeClassifier
+# from sklearn.metrics import accuracy_score
+# from sklearn.metrics import classification_report
+# from sklearn.tree import export_text
 
-from sklearn import tree
-from matplotlib import pyplot as plt
-import graphviz
+# from sklearn import tree
+# from matplotlib import pyplot as plt
+# import graphviz
 import joblib
 
 app = Flask(__name__)
